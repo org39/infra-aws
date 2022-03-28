@@ -41,6 +41,7 @@ jobs:
     - name: Bring up localstack
       run: |
         docker-compose up -d
+        sleep 10
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
