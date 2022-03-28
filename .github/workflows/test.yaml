@@ -2,6 +2,8 @@ name: Unit Test
 
 env:
   TF_VERSION: '1.1.7'
+  LOCALSTACK_CACHE_PATH: /tmp/localstack-image
+  LOCALSTACK_VERSION: 0.14.1
 
 on:
   pull_request:
@@ -37,6 +39,21 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
+
+    - name: Cache a Localstack Docker image
+      id: cache-localstack
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.LOCALSTACK_CACHE_PATH }}
+        key: localstack-${{ env.LOCALSTACK_VERSION }}
+
+    - name: Pull and save a Localstack Docker image
+      if: steps.cache-localstack.outputs.cache-hit != 'true'
+      run: |
+        docker pull "localstack/localstack:$LOCALSTACK_VERSION"
+        docker save "localstack/localstack:$LOCALSTACK_VERSION" -o "$LOCALSTACK_CACHE_PATH"
+
+    - run: docker load -i "$LOCALSTACK_CACHE_PATH"
 
     - name: Bring up localstack
       run: |
