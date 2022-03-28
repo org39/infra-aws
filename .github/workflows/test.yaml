@@ -26,7 +26,7 @@ jobs:
         terraform fmt -check -recursive
 
   localstack_testing:
-    name: localstack testing
+    name: Localstack Apply Test
     runs-on: ubuntu-latest
     needs:
       - fmt
@@ -59,3 +59,7 @@ jobs:
     - name: Terraform Apply
       run: |
         terraform apply -auto-approve -input=false
+
+    - name: Show Result of Apply
+      run: |
+        terraform state list
