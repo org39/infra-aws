@@ -34,6 +34,7 @@ module "bastion_security_group" {
 module "bastion" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "v3.5.0"
+  count   = var.bastion.create ? 1 : 0
 
   name = var.bastion.name
 

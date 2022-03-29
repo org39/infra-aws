@@ -44,6 +44,7 @@ EOT
 variable "bastion" {
   type = object({
     name              = string
+    create            = bool
     key_name          = string
     public_key        = string
     ami               = string
@@ -54,6 +55,7 @@ variable "bastion" {
   description = <<EOT
 The bastion configuration to deploy to infrastructure.
   - name: The name of the bastion (string)
+  - create: Whether to create the bastion (bool)
   - key_name: The name of the key pair to use for the bastion instance (string)
   - public_key: The public key to use for the bastion instance (string)
   - ami: The AMI to use for the bastion instance (string)
@@ -63,6 +65,7 @@ EOT
 
   default = {
     name       = "bastion"
+    create     = true
     key_name   = "bastion-key-pair"
     public_key = ""
     # ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20211129
