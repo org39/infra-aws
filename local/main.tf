@@ -20,7 +20,12 @@ module "infra" {
 
   # bastion variables
   bastion = {
-    key_name   = "org39-bastion-key-pair",
-    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcB1+beAgQR2f33yRIHgYgPvwZBmMrmweyT4nusuDxc9LWAw9moftVMIYlmD1ulwG/KoqGfsF2kpzMGVKP4qCyf00m0qSqVLAwyl85c2QZFMMRBjqg+OLr/hrLHcSNFyKoTPofUkZ1HzHJItlQB+FszsSkBGVqEgPFLSoN+YJ0jeQUrzVRKctg0MfEA9f58PTEdCNHHURu6q1q4hUKrIq7N9NYwsWehfoOwBfyC5Xyp7d3+GILb8wwAKp18ZMY3vTA4NeW7d7WdpHpYaWsm42vEAsYEmRJlL9vV6ZRL+Zk2p2qdLVnWH2Jy5qIhNdrHeTTq+JUvYwNm0gAxSGQ/uLj"
+    name              = "org39-bastion"
+    create            = true
+    key_name          = "org39-bastion-key-pair"
+    public_key        = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcB1+beAgQR2f33yRIHgYgPvwZBmMrmweyT4nusuDxc9LWAw9moftVMIYlmD1ulwG/KoqGfsF2kpzMGVKP4qCyf00m0qSqVLAwyl85c2QZFMMRBjqg+OLr/hrLHcSNFyKoTPofUkZ1HzHJItlQB+FszsSkBGVqEgPFLSoN+YJ0jeQUrzVRKctg0MfEA9f58PTEdCNHHURu6q1q4hUKrIq7N9NYwsWehfoOwBfyC5Xyp7d3+GILb8wwAKp18ZMY3vTA4NeW7d7WdpHpYaWsm42vEAsYEmRJlL9vV6ZRL+Zk2p2qdLVnWH2Jy5qIhNdrHeTTq+JUvYwNm0gAxSGQ/uLj"
+    ami               = "ami-8104a4f8"
+    instance_type     = "t2.micro"
+    enable_monitoring = false
   }
 }

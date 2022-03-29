@@ -43,18 +43,34 @@ EOT
 ############################################################
 variable "bastion" {
   type = object({
-    key_name   = string
-    public_key = string
+    name              = string
+    create            = bool
+    key_name          = string
+    public_key        = string
+    ami               = string
+    instance_type     = string
+    enable_monitoring = bool
   })
 
   description = <<EOT
 The bastion configuration to deploy to infrastructure.
+  - name: The name of the bastion (string)
+  - create: Whether to create the bastion (bool)
   - key_name: The name of the key pair to use for the bastion instance (string)
   - public_key: The public key to use for the bastion instance (string)
+  - ami: The AMI to use for the bastion instance (string)
+  - instance_type: The instance type to use for the bastion instance (string)
+  - enable_monitoring: Whether to enable monitoring for the bastion instance (boolean)
 EOT
 
   default = {
+    name       = "bastion"
+    create     = true
     key_name   = "bastion-key-pair"
     public_key = ""
+    # ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20211129
+    ami               = "ami-04505e74c0741db8d"
+    instance_type     = "t2.micro"
+    enable_monitoring = false
   }
 }

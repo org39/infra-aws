@@ -5,7 +5,7 @@ module "vpc" {
   name = var.vpc.name
   cidr = var.vpc.cidr
 
-  enable_ipv6 = true
+  enable_ipv6 = false
 
   azs             = var.vpc.availability_zones
   private_subnets = var.vpc.private_subnet.cidrs
